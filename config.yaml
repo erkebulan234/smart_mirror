@@ -1,0 +1,34 @@
+# Все настройки системы вынесены сюда (требование раздела 6.6 ТЗ).
+
+camera:
+  index: 0              # индекс веб-камеры (0 = встроенная, 1 = USB)
+  width: 640            # ширина кадра после нормализации размера
+  height: 480
+  mirror: true          # зеркальное отражение по горизонтали
+
+presence:
+  activation_max_sec: 1.0   # ФТ-2: активация не дольше 1 с
+  idle_timeout_sec: 15      # ФТ-2: возврат в режим ожидания (по умолчанию 15 с)
+
+identification:
+  cosine_threshold: 0.5     # порог сходства; подбирается экспериментально
+  vote_window: 10           # решение по большинству из N кадров
+  vectors_per_profile: 8    # 5-10 векторов на профиль
+
+gestures:
+  hold_ms: 400              # удержание жеста 300-500 мс
+  cooldown_ms: 1000         # пауза после срабатывания
+
+brushing:
+  total_sec: 120            # 2 минуты
+  quadrant_sec: 30          # 4 квадранта по 30 с
+  pause_after_still_sec: 5  # ФТ-7: пауза при остановке движения > 5 с
+  mouth_distance_ratio: 0.35  # порог близости кисти ко рту (в долях ширины лица)
+
+weather:
+  latitude: 51.17           # Алматы
+  longitude: 71.43
+  refresh_min: 15
+
+storage:
+  db_path: data/mirror.db
