@@ -17,6 +17,7 @@ class EventType(str, Enum):
     BRUSHING_STARTED = "brushing_started"  # начало чистки зубов
     BRUSHING_ZONE = "brushing_zone"        # payload: {"zone": "upper_left" | ...}
     BRUSHING_PAUSED = "brushing_paused"    # движение отсутствует > 5 с
+    BRUSHING_RESUMED = "brushing_resumed"  # движение возобновилось после паузы
     BRUSHING_FINISHED = "brushing_finished"
     TIMEOUT = "timeout"                    # истёк тайм-аут отсутствия лица
 

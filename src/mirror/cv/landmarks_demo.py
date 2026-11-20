@@ -7,35 +7,13 @@
 Выход:                      клавиша q
 """
 import time
-import urllib.request
 
 import cv2
 import mediapipe as mp
 from mediapipe.tasks.python import BaseOptions, vision
 
-from ..config import ROOT, load_config
-
-MODELS_DIR = ROOT / "models"
-MODEL_URLS = {
-    "face_landmarker.task": (
-        "https://storage.googleapis.com/mediapipe-models/"
-        "face_landmarker/face_landmarker/float16/1/face_landmarker.task"
-    ),
-    "hand_landmarker.task": (
-        "https://storage.googleapis.com/mediapipe-models/"
-        "hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task"
-    ),
-}
-
-
-def ensure_model(name):
-    """Возвращает путь к модели; скачивает её, если файла ещё нет."""
-    path = MODELS_DIR / name
-    if not path.exists():
-        MODELS_DIR.mkdir(exist_ok=True)
-        print(f"Скачиваю {name} ...")
-        urllib.request.urlretrieve(MODEL_URLS[name], path)
-    return str(path)
+from ..config import load_config
+from ..models import ensure_model  # общий загрузчик моделей: скачивает файл один раз в models/
 
 
 def draw_landmarks(frame, landmarks, connections=None, color=(0, 255, 0)):

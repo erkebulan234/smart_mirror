@@ -17,3 +17,9 @@ def load_config(path=None):
     path = Path(path) if path else DEFAULT_CONFIG_PATH
     with open(path, encoding="utf-8") as f:
         return yaml.safe_load(f)
+
+
+def resolve_path(p):
+    """Относительные пути из конфига считаются от корня проекта, а не от текущей папки."""
+    p = Path(p)
+    return p if p.is_absolute() else ROOT / p
